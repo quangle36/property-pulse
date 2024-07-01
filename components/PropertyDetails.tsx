@@ -12,13 +12,13 @@ const PropertyDetails = ({ property }: any) => {
 	return (
 		<main>
 			<div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
-				<div className="text-gray-500 mb-4">{property.type}</div>
-				<h1 className="text-3xl font-bold mb-4">{property.name}</h1>
+				<div className="text-gray-500 mb-4">{property?.type}</div>
+				<h1 className="text-3xl font-bold mb-4">{property?.name}</h1>
 				<div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
 					<FaMapMarker className="text-lg text-orange-700 mr-2" />
 					<p className="text-orange-700">
-						{property.location.street}, {property.location.city}{' '}
-						{property.location.state}
+						{property.location?.street}, {property.location?.city}{' '}
+						{property.location?.state}
 					</p>
 				</div>
 
@@ -29,9 +29,9 @@ const PropertyDetails = ({ property }: any) => {
 					<div className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0">
 						<div className="text-gray-500 mr-2 font-bold">Nightly</div>
 						<div className="text-2xl font-bold">
-							{property.rates.nightly ? (
+							{property.rates?.nightly ? (
 								<div className="text-2xl font-bold text-blue-500">
-									${property.rates.nightly.toLocaleString()}
+									${property.rates?.nightly.toLocaleString()}
 								</div>
 							) : (
 								<FaTimes className="text-red-700" />
@@ -40,9 +40,9 @@ const PropertyDetails = ({ property }: any) => {
 					</div>
 					<div className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0">
 						<div className="text-gray-500 mr-2 font-bold">Weekly</div>
-						{property.rates.weekly ? (
+						{property.rates?.weekly ? (
 							<div className="text-2xl font-bold text-blue-500">
-								${property.rates.weekly.toLocaleString()}
+								${property.rates?.weekly.toLocaleString()}
 							</div>
 						) : (
 							<FaTimes className="text-red-700" />
@@ -50,9 +50,9 @@ const PropertyDetails = ({ property }: any) => {
 					</div>
 					<div className="flex items-center justify-center mb-4 pb-4 md:pb-0">
 						<div className="text-gray-500 mr-2 font-bold">Monthly</div>
-						{property.rates.monthly ? (
+						{property.rates?.monthly ? (
 							<div className="text-2xl font-bold text-blue-500">
-								${property.rates.monthly.toLocaleString()}
+								${property.rates?.monthly.toLocaleString()}
 							</div>
 						) : (
 							<FaTimes className="text-red-700" />
@@ -85,7 +85,7 @@ const PropertyDetails = ({ property }: any) => {
 				<h3 className="text-lg font-bold mb-6">Amenities</h3>
 
 				<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none">
-					{property.amenities.map((amenity: any, index: number) => {
+					{property.amenities?.map((amenity: any, index: number) => {
 						<li key={index}>
 							<FaCheck className="inline-block text-green-600 mr-2" />
 							{amenity}
