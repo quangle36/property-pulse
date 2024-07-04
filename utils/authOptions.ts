@@ -1,5 +1,5 @@
 import GoogleProvider from 'next-auth/providers/google';
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth, { AuthOptions, DefaultSession } from 'next-auth';
 import connectDB from '@/config/database';
 import User from '@/models/User';
 
@@ -36,10 +36,16 @@ export const authOptions: AuthOptions = {
 			//4. Return true to allow sign in
 			return true;
 		},
+		jwt({ token, account, user }) {
+			if (account) {
+				token.id = user.id;
+			}
+			return token;
+		},
 		//Modifies the session object
-		async session({ session }: any) {
+		async session({ session }) {
 			//1. Get user from database
-			const user = await User.findOne({ email: session.user.email });
+			const user = await User.findOne({ email: session?.user?.email });
 			//2. Assign the user id to the session
 			session.user.id = user._id;
 			//3. Return the session

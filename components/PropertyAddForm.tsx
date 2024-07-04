@@ -52,7 +52,7 @@ const PropertyAddForm = () => {
 			}));
 		}
 	};
-	const handleAmenitiesChange = (e) => {
+	const handleAmenitiesChange = (e: any) => {
 		const { checked, value } = e.target;
 
 		//Clonet the current array
@@ -75,7 +75,7 @@ const PropertyAddForm = () => {
 			amenities: updatedAmenities,
 		}));
 	};
-	const handleImagesChange = (e) => {
+	const handleImagesChange = (e: any) => {
 		const { files } = e.target;
 
 		//clone images array
