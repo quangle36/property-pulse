@@ -19,12 +19,13 @@ function PropertyCard({ property }: { property: any }) {
 			return `$${rates.nightly.toLocaleString()}/nt`;
 		}
 	};
+	console.log('property', property.images[0]);
 	return (
 		<div className="rounded-xl shadow-md relative">
 			<Image
 				width={400}
-				height={2000}
-				src={`/images/properties/${property.images[0]}`}
+				height={300}
+				src={`${property.images[0]}`}
 				alt=""
 				className="w-full h-auto rounded-t-xl"
 			/>
