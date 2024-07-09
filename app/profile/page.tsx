@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import profileDefault from '@/assets/images/profile.png';
 import { useState, useEffect } from 'react';
 import Spinner from '@/components/Spinner';
-
+import { toast } from 'react-toastify';
 const ProfilePage = () => {
 	const { data: session } = useSession();
 	const profileImage = session?.user?.image;
@@ -38,7 +38,35 @@ const ProfilePage = () => {
 		}
 	}, [session]);
 
-	const handleDeleteProperty = (propertyId: string) => {};
+	const handleDeleteProperty = async (propertyId: string) => {
+		const confirmed = window.confirm(
+			'Are you sure you want to delete this property?'
+		);
+		if (!confirmed) {
+			return;
+		}
+		try {
+			const res = await fetch(`/api/properties/${propertyId}`, {
+				method: 'DELETE',
+			});
+
+			if (res.status === 200) {
+				//Remove property from state
+				const updatedProperties = properties.filter(
+					(property: any) => property._id !== propertyId
+				);
+
+				setProperties(updatedProperties);
+
+				toast.success('Property Deleted');
+			} else {
+				toast.error('Failed to delete property');
+			}
+		} catch (error) {
+			console.log(error);
+			toast.error('Failed to delete property');
+		}
+	};
 
 	return (
 		<section className="bg-blue-50">
@@ -111,64 +139,6 @@ const ProfilePage = () => {
 									</div>
 								))
 							)}
-							<div className="mb-10">
-								<Link href="/property">
-									<Image
-										className="h-32 w-full rounded-md object-cover"
-										src="/images/properties/a1.jpg"
-										alt="Property 1"
-										width={400}
-										height={300}
-									/>
-								</Link>
-								<div className="mt-2">
-									<p className="text-lg font-semibold">Property Title 1</p>
-									<p className="text-gray-600">Address: 123 Main St</p>
-								</div>
-								<div className="mt-2">
-									<a
-										href="/add-property.html"
-										className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
-									>
-										Edit
-									</a>
-									<button
-										className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
-										type="button"
-									>
-										Delete
-									</button>
-								</div>
-							</div>
-							<div className="mb-10">
-								<a href="/property.html">
-									<Image
-										className="h-32 w-full rounded-md object-cover"
-										src="/images/properties/b1.jpg"
-										alt="Property 2"
-										width={400}
-										height={300}
-									/>
-								</a>
-								<div className="mt-2">
-									<p className="text-lg font-semibold">Property Title 2</p>
-									<p className="text-gray-600">Address: 456 Elm St</p>
-								</div>
-								<div className="mt-2">
-									<Link
-										href="/add-property"
-										className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
-									>
-										Edit
-									</Link>
-									<button
-										className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
-										type="button"
-									>
-										Delete
-									</button>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
