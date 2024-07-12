@@ -9,7 +9,7 @@ const PropertyEditForm = () => {
 	const { id }: { id: string } = useParams();
 	const router = useRouter();
 	const [mounted, setMounted] = useState(false);
-	const [fields, setFields] = useState({
+	const [fields, setFields] = useState<FormFields>({
 		type: 'Apartment',
 		name: '',
 		description: '',
@@ -33,6 +33,7 @@ const PropertyEditForm = () => {
 			email: '',
 			phone: '',
 		},
+		images: [],
 	});
 	const [loading, setLoading] = useState(true);
 
@@ -68,13 +69,12 @@ const PropertyEditForm = () => {
 
 	const handleChange = (e: any) => {
 		const { name, value } = e.target;
-		console.log(name, value);
 		if (name.includes('.')) {
 			const [outerKey, innerKey] = name.split('.');
 			setFields((prev) => ({
 				...prev,
 				[outerKey]: {
-					...prev[outerKey],
+					...(prev[outerKey as keyof FormFields] as any),
 					[innerKey]: value,
 				},
 			}));
@@ -114,7 +114,6 @@ const PropertyEditForm = () => {
 
 		try {
 			const formData = new FormData(e.target);
-			console.log('id', id);
 			const res = await fetch(`/api/properties/${id}`, {
 				method: 'PUT',
 				body: formData,

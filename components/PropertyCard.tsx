@@ -19,7 +19,6 @@ function PropertyCard({ property }: { property: any }) {
 			return `$${rates.nightly.toLocaleString()}/nt`;
 		}
 	};
-	console.log('property', property.images[0]);
 	return (
 		<div className="rounded-xl shadow-md relative">
 			<Image

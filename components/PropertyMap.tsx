@@ -1,7 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { default as Map, Marker } from 'react-map-gl';
+import { default as Map, MapLib } from 'react-map-gl';
+import { Marker } from 'react-map-gl';
+
 import { setDefaults, fromAddress, OutputFormat } from 'react-geocode';
 import Spinner from './Spinner';
 import Image from 'next/image';
@@ -17,9 +19,9 @@ const PropertyMap = ({ property }: any) => {
 		width: '100%',
 		height: '500px',
 	});
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [geocodeError, setGeocodeError] = useState(false);
-
+	const mapboxPromise = import('mapbox-gl');
 	setDefaults({
 		key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY,
 		language: 'en',
@@ -68,7 +70,7 @@ const PropertyMap = ({ property }: any) => {
 		!loading && (
 			<Map
 				mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-				mapLib={import('mapbox-gl')}
+				mapLib={mapboxPromise as Promise<MapLib<any>>}
 				initialViewState={{
 					longitude: lng || 0,
 					latitude: lat || 0,

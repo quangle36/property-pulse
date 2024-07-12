@@ -3,7 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 const PropertyAddForm = () => {
 	const [mounted, setMounted] = useState(false);
-	const [fields, setFields] = useState({
+	const [fields, setFields] = useState<FormFields>({
 		type: 'Apartment',
 		name: '',
 		description: '',
@@ -35,13 +35,12 @@ const PropertyAddForm = () => {
 
 	const handleChange = (e: any) => {
 		const { name, value } = e.target;
-		console.log(name, value);
 		if (name.includes('.')) {
 			const [outerKey, innerKey] = name.split('.');
 			setFields((prev) => ({
 				...prev,
 				[outerKey]: {
-					...prev[outerKey],
+					...(prev[outerKey as keyof FormFields] as any),
 					[innerKey]: value,
 				},
 			}));
@@ -90,7 +89,6 @@ const PropertyAddForm = () => {
 			images: updatedImages,
 		}));
 	};
-	console.log('fields', fields);
 	return (
 		mounted && (
 			<form

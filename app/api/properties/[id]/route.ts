@@ -38,8 +38,6 @@ export const DELETE = async (request: any, { params }: any) => {
 		}
 
 		// Verify ownership
-		console.log('property.owner.toString()', property.owner.toString());
-		console.log('userId', userId);
 		if (property.owner.toString() !== userId) {
 			return new Response('Unauthorized', { status: 401 });
 		}
