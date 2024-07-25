@@ -28,7 +28,7 @@ const ShareButton = ({ property }: any) => {
 
 				<TwitterShareButton
 					url={shareUrl}
-					hashtags={[`#${property.type.replace(/\s/g, '')}ForRent`]}
+					hashtags={[`#${property.type?.replace(/\s/g, '')}ForRent`]}
 				>
 					<TwitterIcon size={40} round />
 				</TwitterShareButton>

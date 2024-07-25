@@ -5,7 +5,7 @@ const PropertyImages = ({ images }) => {
 	return (
 		<section className="bg-blue-50 p-4">
 			<div className="container mx-auto">
-				{images.length === 1 ? (
+				{images?.length === 1 ? (
 					<Image
 						src={images[0]}
 						alt=""
@@ -16,7 +16,7 @@ const PropertyImages = ({ images }) => {
 					/>
 				) : (
 					<div className="grid grid-cols-2 gap-4">
-						{images.map((image: any, index: any) => (
+						{images?.map((image: any, index: any) => (
 							<div
 								key={index}
 								className={`${
