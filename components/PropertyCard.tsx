@@ -67,7 +67,8 @@ function PropertyCard({ property }: { property: any }) {
 					)}
 					{property.rates.monthly && (
 						<p>
-							<i className="fa-solid fa-money-bill"></i> Monthly
+							<FaMoneyBill className="fa-solid fa-money-bill" />
+							Monthly
 						</p>
 					)}
 				</div>
@@ -76,7 +77,7 @@ function PropertyCard({ property }: { property: any }) {
 
 				<div className="flex flex-col lg:flex-row justify-between mb-4">
 					<div className="flex align-middle gap-2 mb-4 lg:mb-0">
-						<FaMapMarker className="text-orange-700 mt-1" />
+						<FaMapMarker className="text-orange-700 mt-1 text-lg" />
 						<span className="text-orange-700">
 							{property.location.city} {property.location.state}
 						</span>

@@ -11,7 +11,10 @@ const BookmarkButton = ({ property }: any) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (!userId) return;
+		if (!userId) {
+			setLoading(false);
+			return;
+		}
 		const checkBookmarkStatus = async () => {
 			try {
 				const res = await fetch('/api/bookmark/check', {
@@ -28,6 +31,7 @@ const BookmarkButton = ({ property }: any) => {
 			} catch (error) {
 				console.log(error);
 			} finally {
+				console.log('co vo day');
 				setLoading(false);
 			}
 		};
