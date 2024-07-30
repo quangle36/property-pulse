@@ -34,10 +34,10 @@ const Messages = () => {
 					<h1 className="text-3xl font-bold mb-4">Your Messages</h1>
 
 					<div className="space-y-4">
-						{messages.length === 0 ? (
+						{messages?.length === 0 ? (
 							<p>You have no messages</p>
 						) : (
-							messages.map((message: any) => (
+							messages?.map((message: any) => (
 								<Message key={message._id} message={message} />
 							))
 						)}

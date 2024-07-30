@@ -32,7 +32,7 @@ const PropertyImages = ({ images }: any) => {
 								<div
 									key={index}
 									className={`${
-										images.length === 3 && index === 2
+										images?.length === 3 && index === 2
 											? 'col-span-2'
 											: 'col-span-1'
 									}`}

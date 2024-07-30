@@ -41,7 +41,7 @@ const PropertyMap = ({ property }: any) => {
 				);
 
 				//Check for results
-				if (res.results.length === 0) {
+				if (res.results?.length === 0) {
 					//No result found
 					setGeocodeError(true);
 					setLoading(false);

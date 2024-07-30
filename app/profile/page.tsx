@@ -94,13 +94,13 @@ const ProfilePage = () => {
 
 						<div className="md:w-3/4 md:pl-4">
 							<h2 className="text-xl font-semibold mb-4">Your Listings</h2>
-							{!loading && properties.length === 0 && (
+							{!loading && properties?.length === 0 && (
 								<p>You have no property listings</p>
 							)}
 							{loading ? (
 								<Spinner loading={loading} />
 							) : (
-								properties.map((property: any, index) => (
+								properties?.map((property: any, index) => (
 									<div key={property._id} className="mb-10">
 										<Link href={`/properties/${property._id}`}>
 											<Image

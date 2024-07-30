@@ -1,12 +1,12 @@
 import connectDB from '@/config/database';
 import Property from '@/models/Property';
-
+export const dynamic = 'force-dynamic';
 //GET /api/properties/search
 export const GET = async (request: any) => {
 	try {
 		await connectDB();
-
-		const { searchParams } = new URL(request.url);
+		const url = request.url;
+		const { searchParams } = new URL(url);
 		const location = searchParams.get('location') as string;
 		const propertyType = searchParams.get('propertyType');
 

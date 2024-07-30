@@ -208,7 +208,7 @@ const Navbar = () => {
 						<div className="hidden md:block md:ml-6">
 							<div className="flex items-center">
 								{providers &&
-									Object.values(providers).map((provider: any, index) => (
+									Object.values(providers)?.map((provider: any, index) => (
 										<button
 											onClick={() => signIn(provider.id)}
 											key={index}
@@ -256,7 +256,7 @@ const Navbar = () => {
 						)}
 						{!session &&
 							providers &&
-							Object.values(providers).map((provider: any, index) => (
+							Object.values(providers)?.map((provider: any, index) => (
 								<button
 									onClick={() => signIn(provider.id)}
 									key={index}

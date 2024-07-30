@@ -36,8 +36,6 @@ const SearchResultsPage = () => {
 		};
 		fetchSearchResults();
 	}, [location, propertyType]);
-	console.log(properties);
-	console.log(searchParams.get('location'));
 	return (
 		<>
 			<section className="bg-blue-700 py-4">
@@ -61,7 +59,7 @@ const SearchResultsPage = () => {
 							<div>No search results found</div>
 						) : (
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-								{properties.map((property: any, index: any) => (
+								{properties?.map((property: any, index: any) => (
 									<PropertyCard key={property._id} property={property} />
 								))}
 							</div>
